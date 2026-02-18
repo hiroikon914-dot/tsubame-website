@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>つばめ装業｜費用シミュレーター</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .calculator-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      padding: 2em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5em;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+      color: #223;
+    }
+
+    .form-group select,
+    .form-group input[type="number"] {
+      width: 100%;
+      padding: 0.6em 0.8em;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .form-group .hint {
+      font-size: 0.85em;
+      color: #888;
+      margin-top: 0.3em;
+    }
+
+    .calc-button {
+      display: block;
+      width: 100%;
+      padding: 0.8em;
+      font-size: 1.1em;
+      font-weight: bold;
+      background: #223;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .calc-button:hover {
+      background: #445;
+    }
+
+    .result-box {
+      margin-top: 2em;
+      padding: 1.5em;
+      background: #eef4fb;
+      border-left: 4px solid #4477aa;
+      border-radius: 4px;
+      display: none;
+    }
+
+    .result-box h3 {
+      margin-top: 0;
+      color: #223;
+    }
+
+    .result-price {
+      font-size: 2em;
+      font-weight: bold;
+      color: #c0392b;
+    }
+
+    .result-range {
+      font-size: 0.95em;
+      color: #555;
+      margin-top: 0.5em;
+    }
+
+    .result-note {
+      margin-top: 1em;
+      font-size: 0.85em;
+      color: #777;
+    }
+
+    .breakdown {
+      margin-top: 1em;
+      font-size: 0.9em;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .breakdown td {
+      padding: 0.4em 0.6em;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .breakdown td:last-child {
+      text-align: right;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>つばめ装業</h1>
+    <p>横浜・長津田を拠点とする塗装工事</p>
+  </header>
+
+  <nav>
+    <a href="index.html">ホーム</a>
+    <a href="about.html">会社紹介</a>
+    <a href="services.html">サービス</a>
+    <a href="calculator.html">費用シミュレーター</a>
+    <a href="faq.html">よくある質問</a>
+    <a href="contact.html">お問い合わせ</a>
+  </nav>
+
+  <main>
+    <h2>費用シミュレーター</h2>
+    <p>施工面積と仕上げの種類を入力すると、おおよその費用の目安をご確認いただけます。</p>
+
+    <div class="calculator-box">
+      <div class="form-group">
+        <label for="work-type">施工箇所</label>
+        <select id="work-type">
+          <option value="exterior">外壁塗装</option>
+          <option value="roof">屋根塗装</option>
+          <option value="interior">室内塗装</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="area">施工面積（㎡）</label>
+        <input type="number" id="area" min="1" max="9999" placeholder="例：120">
+        <p class="hint">※ 一般的な2階建て住宅の外壁は約100〜150㎡が目安です</p>
+      </div>
+
+      <div class="form-group">
+        <label for="grade">仕上げグレード</label>
+        <select id="grade">
+          <option value="standard">スタンダード（シリコン系）</option>
+          <option value="premium">プレミアム（フッ素系）</option>
+          <option value="highend">ハイエンド（無機・遮熱系）</option>
+        </select>
+      </div>
+
+      <button class="calc-button" onclick="calculate()">見積もりを計算する</button>
+
+      <div class="result-box" id="result-box">
+        <h3>費用の目安</h3>
+        <div class="result-price" id="result-mid"></div>
+        <div class="result-range" id="result-range"></div>
+        <table class="breakdown" id="breakdown-table"></table>
+        <p class="result-note">
+          ※ この金額はあくまでも目安です。足場代・下地処理・現場状況により実際の費用は異なります。<br>
+          正確なお見積もりは<a href="contact.html">お問い合わせフォーム</a>からお気軽にどうぞ。
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 つばめ装業
+  </footer>
+
+  <script>
+    // 単価テーブル（円/㎡）
+    const unitPrices = {
+      exterior: { standard: 1000, premium: 1500, highend: 2200 },
+      roof:     { standard: 1200, premium: 1800, highend: 2600 },
+      interior: { standard:  700, premium: 1100, highend: 1600 },
+    };
+
+    // 足場代の目安（外壁・屋根のみ）
+    const scaffolding = {
+      exterior: 150,
+      roof: 150,
+      interior: 0,
+    };
+
+    const gradeLabel = {
+      standard: 'スタンダード（シリコン系）',
+      premium:  'プレミアム（フッ素系）',
+      highend:  'ハイエンド（無機・遮熱系）',
+    };
+
+    const workLabel = {
+      exterior: '外壁塗装',
+      roof:     '屋根塗装',
+      interior: '室内塗装',
+    };
+
+    function formatYen(n) {
+      return n.toLocaleString('ja-JP') + '円';
+    }
+
+    function calculate() {
+      const workType = document.getElementById('work-type').value;
+      const area = parseFloat(document.getElementById('area').value);
+      const grade = document.getElementById('grade').value;
+
+      if (!area || area <= 0) {
+        alert('施工面積を入力してください。');
+        return;
+      }
+
+      const baseRate = unitPrices[workType][grade];
+      const scaffoldRate = scaffolding[workType];
+
+      const paintCost = Math.round(baseRate * area);
+      const scaffoldCost = Math.round(scaffoldRate * area);
+      const undercoatCost = Math.round(baseRate * area * 0.15); // 下地処理の目安
+
+      const midTotal = paintCost + scaffoldCost + undercoatCost;
+      const lowTotal = Math.round(midTotal * 0.85);
+      const highTotal = Math.round(midTotal * 1.20);
+
+      document.getElementById('result-mid').textContent = formatYen(midTotal) + ' 前後';
+      document.getElementById('result-range').textContent =
+        '目安の幅：' + formatYen(lowTotal) + ' 〜 ' + formatYen(highTotal);
+
+      const rows = [];
+
+      if (scaffoldCost > 0) {
+        rows.push(['足場費用', formatYen(scaffoldCost)]);
+      }
+      rows.push(['塗装工事費（' + gradeLabel[grade] + '）', formatYen(paintCost)]);
+      rows.push(['下地処理費（目安）', formatYen(undercoatCost)]);
+
+      const table = document.getElementById('breakdown-table');
+      table.innerHTML = rows.map(([label, val]) =>
+        '<tr><td>' + label + '</td><td>' + val + '</td></tr>'
+      ).join('');
+
+      const resultBox = document.getElementById('result-box');
+      resultBox.style.display = 'block';
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+</body>
+</html>
