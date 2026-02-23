@@ -110,28 +110,24 @@ if (calcWrap) {
     });
   });
 
-  /* --- 坪数・畳数ボタン --- */
-  calcWrap.querySelectorAll('.calc-option').forEach(opt => {
-    opt.addEventListener('click', () => {
-      const section = opt.closest('[data-show-for]');
-      section.querySelectorAll('.calc-option').forEach(o => o.classList.remove('selected'));
-      opt.classList.add('selected');
-      state.size = parseFloat(opt.dataset.size);
-      calculate();
-    });
-  });
-
-  /* --- テキスト入力（畳数・㎡） --- */
+  /* --- 数値入力（坪数・畳数・㎡） --- */
   calcWrap.querySelectorAll('.calc-input-field').forEach(input => {
     input.addEventListener('input', () => updateFromInputs());
   });
 
   function updateFromInputs() {
-    const w = parseFloat(calcWrap.querySelector('[data-role="width"]')?.value)  || 0;
-    const h = parseFloat(calcWrap.querySelector('[data-role="height"]')?.value) || 0;
-    const t = parseFloat(calcWrap.querySelector('[data-role="tatami"]')?.value) || 0;
-    if (state.type === 'kabe') state.size = w * h;
-    if (state.type === 'heya' && t > 0) state.size = t;
+    const w     = parseFloat(calcWrap.querySelector('[data-role="width"]')?.value)  || 0;
+    const h     = parseFloat(calcWrap.querySelector('[data-role="height"]')?.value) || 0;
+    const t     = parseFloat(calcWrap.querySelector('[data-role="tatami"]')?.value) || 0;
+    const tsubo = parseFloat(calcWrap.querySelector('[data-role="tsubo"]')?.value)  || 0;
+    if (state.type === 'gaiheki') state.size = tsubo;
+    if (state.type === 'kabe')    state.size = w * h;
+    if (state.type === 'heya')    state.size = t;
+    // バリデーション：入力済みで0以下の場合は赤枠表示
+    calcWrap.querySelectorAll('.calc-input-field').forEach(inp => {
+      const v = inp.value;
+      inp.classList.toggle('invalid', v !== '' && parseFloat(v) <= 0);
+    });
     calculate();
   }
 
@@ -141,13 +137,10 @@ if (calcWrap) {
       const types = sec.dataset.showFor.split(',');
       sec.style.display = types.includes(state.type) ? '' : 'none';
     });
-    // 初期サイズをリセット
-    const firstOpt = calcWrap.querySelector(`[data-show-for="${state.type}"] .calc-option`);
-    if (firstOpt) {
-      calcWrap.querySelectorAll('.calc-option').forEach(o => o.classList.remove('selected'));
-      firstOpt.classList.add('selected');
-      state.size = parseFloat(firstOpt.dataset.size) || 30;
-    }
+    // 入力フィールドをリセット
+    calcWrap.querySelectorAll('.calc-input-field').forEach(i => { i.value = ''; i.classList.remove('invalid'); });
+    state.size = 0;
+    calcWrap.querySelector('.calc-result')?.classList.remove('show');
   }
 
   /* --- 計算 --- */
