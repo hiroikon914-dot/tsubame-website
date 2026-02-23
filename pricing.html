@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>料金目安・概算シミュレーター｜つばめ装業</title>
+  <meta name="description" content="外壁塗装・部屋塗装・壁塗装の概算費用を無料でシミュレーション。面積やグレードを選ぶだけで目安金額がわかります。横浜市緑区のつばめ装業。">
+  <link rel="canonical" href="https://hiroikon914-dot.github.io/tsubame-website/pricing.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="料金目安・概算シミュレーター｜つばめ装業">
+  <meta property="og:description" content="外壁塗装・部屋塗装・壁塗装の概算費用シミュレーター。横浜市緑区のつばめ装業。">
+  <meta property="og:url" content="https://hiroikon914-dot.github.io/tsubame-website/pricing.html">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="つばめ装業">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="site-logo"><span class="logo-bird">🐦</span>つばめ装業</a>
+    <nav class="site-nav">
+      <a href="index.html">トップ</a>
+      <a href="about.html">職人紹介</a>
+      <a href="services.html">サービス</a>
+      <a href="works.html">施工事例</a>
+      <a href="pricing.html" class="active">料金目安</a>
+      <a href="faq.html">よくある質問</a>
+      <a href="contact.html" class="nav-contact-btn">お問い合わせ</a>
+    </nav>
+    <button class="hamburger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav">
+  <a href="index.html">🏠 トップ</a>
+  <a href="about.html">👷 職人紹介</a>
+  <a href="services.html">🔧 サービス</a>
+  <a href="works.html">📸 施工事例</a>
+  <a href="pricing.html">💰 料金目安</a>
+  <a href="faq.html">❓ よくある質問</a>
+  <a href="contact.html" class="mobile-nav-cta">📩 お問い合わせ</a>
+</nav>
+
+<section class="page-hero">
+  <h1>💰 料金目安</h1>
+  <p>概算シミュレーターで費用の目安をチェック</p>
+</section>
+
+<!-- ===== 料金シミュレーター ===== -->
+<!-- 【編集】単価を変更したい → assets/js/main.js の PRICING オブジェクトを編集してください -->
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>概算見積もりシミュレーター</h2>
+      <p>工事の種別・大きさ・グレードを選ぶだけで目安金額が表示されます</p>
+      <span class="accent-bar"></span>
+    </div>
+
+    <div class="calc-card pricing-calc">
+
+      <!-- STEP 1: 工事種別 -->
+      <div class="calc-section">
+        <span class="calc-label">① 工事の種類を選んでください</span>
+        <div class="calc-type-grid">
+          <button class="calc-type-btn selected" data-type="gaiheki">
+            <div class="type-icon">🏠</div>
+            <span class="type-label">外壁塗装</span>
+          </button>
+          <button class="calc-type-btn" data-type="heya">
+            <div class="type-icon">🛋</div>
+            <span class="type-label">部屋塗装</span>
+          </button>
+          <button class="calc-type-btn" data-type="kabe">
+            <div class="type-icon">🖌</div>
+            <span class="type-label">壁塗装（㎡）</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: 面積 -->
+
+      <!-- 外壁：坪数選択 -->
+      <div class="calc-section" data-show-for="gaiheki">
+        <span class="calc-label">② 建物の大きさ（坪数）</span>
+        <div class="calc-options">
+          <button class="calc-option" data-size="20">20坪</button>
+          <button class="calc-option" data-size="25">25坪</button>
+          <button class="calc-option selected" data-size="30">30坪</button>
+          <button class="calc-option" data-size="35">35坪</button>
+          <button class="calc-option" data-size="40">40坪</button>
+          <button class="calc-option" data-size="45">45坪</button>
+          <button class="calc-option" data-size="50">50坪</button>
+        </div>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-top:8px;">
+          ※ 坪数がわからない場合は <a href="contact.html">お問い合わせ</a> ください
+        </p>
+      </div>
+
+      <!-- 部屋：畳数 -->
+      <div class="calc-section" data-show-for="heya" style="display:none">
+        <span class="calc-label">② 部屋の広さ（畳数）</span>
+        <div class="calc-options">
+          <button class="calc-option" data-size="6">6畳</button>
+          <button class="calc-option selected" data-size="8">8畳</button>
+          <button class="calc-option" data-size="10">10畳</button>
+          <button class="calc-option" data-size="12">12畳</button>
+          <button class="calc-option" data-size="15">15畳</button>
+          <button class="calc-option" data-size="20">20畳</button>
+        </div>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-top:10px;">または畳数を直接入力：</p>
+        <div class="calc-input-row">
+          <input class="ci calc-input-field" type="number" min="1" max="100" placeholder="例：10" data-role="tatami">
+          <span>畳</span>
+        </div>
+      </div>
+
+      <!-- 壁：幅×高さ -->
+      <div class="calc-section" data-show-for="kabe" style="display:none">
+        <span class="calc-label">② 壁の面積（幅 × 高さ を入力）</span>
+        <div class="calc-input-row">
+          <input class="ci calc-input-field" type="number" min="0.1" step="0.1" placeholder="幅（m）" data-role="width">
+          <span>m ×</span>
+          <input class="ci calc-input-field" type="number" min="0.1" step="0.1" placeholder="高さ（m）" data-role="height">
+          <span>m</span>
+        </div>
+      </div>
+
+      <!-- STEP 3: グレード -->
+      <div class="calc-section">
+        <span class="calc-label">③ 仕上げのグレード</span>
+        <div class="grade-grid">
+          <div class="grade-card" data-grade="omakase">
+            <div class="g-icon">🙂</div>
+            <div class="g-name">おまかせ</div>
+            <div class="g-desc">コスパ重視・スタンダード品質</div>
+          </div>
+          <div class="grade-card selected" data-grade="shikkari">
+            <div class="g-icon">😊</div>
+            <div class="g-name">しっかり</div>
+            <div class="g-desc">耐久性・品質をしっかり確保</div>
+          </div>
+          <div class="grade-card" data-grade="kodawari">
+            <div class="g-icon">🤩</div>
+            <div class="g-name">こだわり</div>
+            <div class="g-desc">高耐久・プレミアム仕上げ</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 結果 -->
+      <div class="calc-result">
+        <div class="result-label">概算費用の目安（税込）</div>
+        <div class="result-amount">―</div>
+        <div class="result-note">あくまでも目安です。詳しくは現地見積もりをご依頼ください。</div>
+      </div>
+
+      <!-- 注意書き -->
+      <div class="calc-notes">
+        <p>⚠️ 劣化状況・足場費用・下地補修・付帯部（破風・軒天など）の状態によって増減します。</p>
+        <p style="margin-top:6px;">⚠️ 正確な金額は現地確認後にお見積もりします。まずはお気軽にご相談ください。</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="calc-cta">
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:16px;">
+          「実際のお見積もりはどうなる？」はコンさんに直接聞いてみてください！
+        </p>
+        <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:14px;">
+          <a href="https://lin.ee/XXXXXXXXX" target="_blank" rel="noopener" class="btn btn-line btn-lg">💬 LINEで無料相談</a>
+          <a href="contact.html" class="btn btn-accent">📩 メールフォーム</a>
+        </div>
+      </div>
+    </div><!-- /calc-card -->
+  </div>
+</section>
+
+<!-- ===== 料金の参考目安表 ===== -->
+<section class="section-alt">
+  <div class="container">
+    <div class="section-title">
+      <h2>参考：工事別の料金目安</h2>
+      <p>あくまでも参考値です。状態・面積・塗料によって大きく変わります。</p>
+      <span class="accent-bar"></span>
+    </div>
+    <!-- 【編集】金額は main.js の PRICING に合わせて変更してください -->
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:0.9rem;min-width:480px;">
+        <thead>
+          <tr style="background:var(--primary);color:#fff;">
+            <th style="padding:12px 16px;text-align:left;">工事内容</th>
+            <th style="padding:12px 16px;text-align:center;">おまかせ</th>
+            <th style="padding:12px 16px;text-align:center;">しっかり</th>
+            <th style="padding:12px 16px;text-align:center;">こだわり</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px 16px;font-weight:600;">外壁塗装（30坪）</td>
+            <td style="padding:12px 16px;text-align:center;">24〜36万円</td>
+            <td style="padding:12px 16px;text-align:center;">39〜54万円</td>
+            <td style="padding:12px 16px;text-align:center;">57〜84万円</td>
+          </tr>
+          <tr style="background:var(--bg);border-bottom:1px solid var(--border);">
+            <td style="padding:12px 16px;font-weight:600;">屋根塗装（30坪）</td>
+            <td style="padding:12px 16px;text-align:center;" colspan="3">別途お見積もり</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px 16px;font-weight:600;">部屋塗装（8畳）</td>
+            <td style="padding:12px 16px;text-align:center;">6〜9万円</td>
+            <td style="padding:12px 16px;text-align:center;">10〜14万円</td>
+            <td style="padding:12px 16px;text-align:center;">15〜20万円</td>
+          </tr>
+          <tr style="background:var(--bg);">
+            <td style="padding:12px 16px;font-weight:600;">壁塗装（20㎡）</td>
+            <td style="padding:12px 16px;text-align:center;">5〜7万円</td>
+            <td style="padding:12px 16px;text-align:center;">7〜10万円</td>
+            <td style="padding:12px 16px;text-align:center;">10〜16万円</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container">
+    <h2>正確なお見積もりは無料です</h2>
+    <p>シミュレーターはあくまで目安。現地を見てからきちんとお見積もりします。</p>
+    <div class="cta-buttons">
+      <a href="https://lin.ee/XXXXXXXXX" target="_blank" rel="noopener" class="btn btn-line btn-lg">💬 LINEで無料相談</a>
+      <a href="contact.html" class="btn btn-accent btn-lg">📩 メールフォーム</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">🐦 つばめ装業</div>
+      <p>横浜市緑区を中心に外壁・屋根・<br>室内塗装など塗装工事全般承ります。</p>
+      <div class="footer-sns">
+        <a href="https://www.instagram.com/tsubame.painting/" target="_blank" rel="noopener" title="Instagram">📷</a>
+        <a href="https://lin.ee/XXXXXXXXX" target="_blank" rel="noopener" title="LINE">💬</a>
+      </div>
+    </div>
+    <nav class="footer-nav">
+      <h4>ページ</h4>
+      <a href="index.html">トップ</a>
+      <a href="about.html">職人紹介</a>
+      <a href="services.html">サービス</a>
+      <a href="works.html">施工事例</a>
+      <a href="pricing.html">料金目安</a>
+      <a href="faq.html">よくある質問</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+    <div class="footer-info">
+      <p>活動エリア：横浜市緑区中心<br>受付：平日 8:00〜18:00</p>
+      <p class="mt-16"><a href="privacy.html">プライバシーポリシー</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2025 つばめ装業</p></div>
+</footer>
+
+<a href="https://lin.ee/XXXXXXXXX" target="_blank" rel="noopener" class="float-line">💬 LINEで相談</a>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
