@@ -68,28 +68,38 @@
   <a href="contact.html" class="mobile-nav-cta">📩 お問い合わせ（LINE / フォーム）</a>
 </nav>
 
-<!-- ===== ヒーロー ===== -->
-<!-- 【編集】キャッチコピーや CTAボタンのテキストを変えたい → この中の h1・btn のテキストを変更 -->
-<section class="hero">
-  <div class="hero-eyebrow">🌸 横浜市緑区の町の塗装屋さん</div>
-  <h1>
-    外壁も、屋根も、<br>
-    <em>ちょっとした困りごとも。</em><br>
-    つばめ装業のコンさんへ
-  </h1>
-  <p class="hero-sub">職人歴30年以上。横浜市緑区を中心に、丁寧な施工と気さくな人柄でご対応します。まずはお気軽にLINEでご相談ください。</p>
-  <div class="hero-badges">
-    <span class="hero-badge">📋 見積もり無料</span>
-    <span class="hero-badge">📍 横浜市緑区中心</span>
-    <span class="hero-badge">⚒ 職人歴30年以上</span>
-    <span class="hero-badge">🐾 愛犬ハチと一緒</span>
+<!-- ===== ヒーロー スライドショー ===== -->
+<!-- 【編集】写真を差し替える → assets/img/hero-01.jpg 〜 hero-03.jpg を入れ替え -->
+<section class="hero-slideshow">
+  <div class="slide active" style="background-image:url('assets/img/hero-01.jpg')"></div>
+  <div class="slide" style="background-image:url('assets/img/hero-02.jpg')"></div>
+  <div class="slide" style="background-image:url('assets/img/hero-03.jpg')"></div>
+  <div class="slide-overlay"></div>
+  <div class="hero-content">
+    <h1>
+      外壁も、屋根も、<br>
+      <em>ちょっとした困りごとも。</em><br>
+      つばめ装業のコンさんへ
+    </h1>
+    <p class="hero-sub">職人歴30年以上。横浜市緑区を中心に、丁寧な施工と気さくな人柄でご対応します。まずはお気軽にLINEでご相談ください。</p>
+    <div class="hero-badges">
+      <span class="hero-badge">📋 見積もり無料</span>
+      <span class="hero-badge">📍 横浜市緑区中心</span>
+      <span class="hero-badge">⚒ 職人歴30年以上</span>
+      <span class="hero-badge">🐾 愛犬ハチと一緒</span>
+    </div>
+    <div class="hero-cta">
+      <!-- 【編集】LINE URL → https://lin.ee/XXXXXXXXX を実際のURLに変更 -->
+      <a href="https://lin.ee/XXXXXXXXX" target="_blank" rel="noopener" class="btn btn-line btn-lg">
+        💬 LINEで相談する（無料）
+      </a>
+      <a href="contact.html" class="hero-btn-sub">その他のお問い合わせ</a>
+    </div>
   </div>
-  <div class="hero-cta">
-    <!-- 【編集】LINE URL → https://lin.ee/XXXXXXXXX を実際のURLに変更 -->
-    <a href="https://lin.ee/XXXXXXXXX" target="_blank" rel="noopener" class="btn btn-line btn-lg">
-      💬 LINEで相談する（無料）
-    </a>
-    <a href="contact.html" class="btn-white">📩 メールフォーム</a>
+  <div class="slide-dots" aria-label="スライド選択">
+    <button class="dot active" data-index="0" aria-label="スライド1"></button>
+    <button class="dot" data-index="1" aria-label="スライド2"></button>
+    <button class="dot" data-index="2" aria-label="スライド3"></button>
   </div>
 </section>
 
@@ -135,82 +145,6 @@
   </div>
 </section>
 
-<!-- ===== 施工事例プレビュー ===== -->
-<section class="section-alt">
-  <div class="container">
-    <div class="section-title">
-      <h2>施工事例</h2>
-      <p>横浜市緑区エリアの実績から一部をご紹介します</p>
-      <span class="accent-bar"></span>
-    </div>
-    <div class="works-grid">
-      <div class="work-card">
-        <div class="work-ba">
-          <div class="work-ba-item">
-            <!-- 【編集】画像を差し替える → src="assets/img/work1-before.jpg" のように変更 -->
-            <div class="work-img-placeholder">Before<br>（写真を差し替えてください）</div>
-            <span class="work-ba-label">Before</span>
-          </div>
-          <div class="work-ba-item">
-            <div class="work-img-placeholder">After<br>（写真を差し替えてください）</div>
-            <span class="work-ba-label">After</span>
-          </div>
-        </div>
-        <div class="work-info">
-          <h3>外壁塗装（横浜市緑区・戸建て）</h3>
-          <div class="work-tags">
-            <span class="work-tag">外壁塗装</span>
-            <span class="work-tag">施工5日</span>
-          </div>
-          <p class="work-cost">費用目安：<strong>50〜70万円</strong></p>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-ba">
-          <div class="work-ba-item">
-            <div class="work-img-placeholder">Before</div>
-            <span class="work-ba-label">Before</span>
-          </div>
-          <div class="work-ba-item">
-            <div class="work-img-placeholder">After</div>
-            <span class="work-ba-label">After</span>
-          </div>
-        </div>
-        <div class="work-info">
-          <h3>屋根塗装（横浜市緑区・戸建て）</h3>
-          <div class="work-tags">
-            <span class="work-tag">屋根塗装</span>
-            <span class="work-tag">施工3日</span>
-          </div>
-          <p class="work-cost">費用目安：<strong>30〜50万円</strong></p>
-        </div>
-      </div>
-      <div class="work-card">
-        <div class="work-ba">
-          <div class="work-ba-item">
-            <div class="work-img-placeholder">Before</div>
-            <span class="work-ba-label">Before</span>
-          </div>
-          <div class="work-ba-item">
-            <div class="work-img-placeholder">After</div>
-            <span class="work-ba-label">After</span>
-          </div>
-        </div>
-        <div class="work-info">
-          <h3>室内塗装（横浜市緑区・マンション）</h3>
-          <div class="work-tags">
-            <span class="work-tag">室内塗装</span>
-            <span class="work-tag">施工2日</span>
-          </div>
-          <p class="work-cost">費用目安：<strong>8〜15万円</strong></p>
-        </div>
-      </div>
-    </div>
-    <div class="text-center mt-32">
-      <a href="works.html" class="btn btn-outline">施工事例をもっと見る →</a>
-    </div>
-  </div>
-</section>
 
 <!-- ===== Instagram（人柄・日常） ===== -->
 <!-- 【編集】Instagramの実際の投稿を埋め込む場合は、
@@ -231,12 +165,6 @@
       <div class="insta-placeholder"><span class="ig-icon">📷</span>日常の一コマ</div>
       <div class="insta-placeholder"><span class="ig-icon">🎨</span>塗装の様子</div>
     </div>
-    <div class="text-center">
-      <!-- 【編集】@tsubame.painting を実際のInstagramアカウントに確認して変更 -->
-      <a href="https://www.instagram.com/tsubame.painting/" target="_blank" rel="noopener" class="insta-link">
-        📷 @tsubame.painting をフォローする
-      </a>
-    </div>
   </div>
 </section>
 
@@ -247,8 +175,7 @@
     <p>見積もり・相談は完全無料。LINEでの写真相談も大歓迎です。</p>
     <div class="cta-buttons">
       <a href="https://lin.ee/XXXXXXXXX" target="_blank" rel="noopener" class="btn btn-line btn-lg">💬 LINEで相談する</a>
-      <a href="contact.html" class="btn btn-accent btn-lg">📩 メールで問い合わせる</a>
-      <a href="pricing.html" class="btn btn-outline" style="border-color:rgba(255,255,255,0.6);color:#fff;">💰 料金の目安を見る</a>
+      <a href="contact.html" class="btn btn-accent btn-lg">その他のお問い合わせ</a>
     </div>
   </div>
 </section>

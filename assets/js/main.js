@@ -184,3 +184,37 @@ if (contactForm) {
     if (thanks) thanks.classList.add('show');
   });
 }
+
+/* ─────────────────────────────────────
+   ヒーロー スライドショー
+   5秒ごとに自動切り替え＋ドットで手動選択
+───────────────────────────────────── */
+const slideshow = document.querySelector('.hero-slideshow');
+if (slideshow) {
+  const slides = slideshow.querySelectorAll('.slide');
+  const dots   = slideshow.querySelectorAll('.dot');
+  let current  = 0;
+  let timer;
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function startTimer() {
+    timer = setInterval(() => goTo(current + 1), 5000);
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      clearInterval(timer);
+      goTo(parseInt(dot.dataset.index, 10));
+      startTimer();
+    });
+  });
+
+  startTimer();
+}
